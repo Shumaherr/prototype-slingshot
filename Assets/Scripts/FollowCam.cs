@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FollowCam : MonoBehaviour
 {
-    private GameObject _slingshot;
+    private Vector3 _slingshotPos;
     static public GameObject POI;
+    private GameObject _castle;
     [Header("Set in Inspector")]
     public float easing = 0.05f;
     public Vector2 minXY = Vector2.zero;
     [Header("Set Dynamically")]
     public float camZ;
+
+    public Text score;
 
     private void Awake()
     {
@@ -19,7 +23,8 @@ public class FollowCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _slingshot = GameObject.FindWithTag("Player");
+        _castle = GameObject.FindWithTag("Castle");
+        _slingshotPos = GameObject.FindWithTag("GameManager").GetComponent<GameManager>().slingshotPos;
     }
 
     // Update is called once per frame
@@ -28,11 +33,13 @@ public class FollowCam : MonoBehaviour
         
         Vector3 destination;
         if (POI == null) {
-            destination = _slingshot.transform.position;
+            destination = _slingshotPos;
         } else {
             destination = POI.transform.position;
             if (POI.tag == "Projectile") {
-                if (POI.GetComponent<Rigidbody>().IsSleeping()) {
+                if (POI.GetComponent<Rigidbody>().IsSleeping())
+                {
+                    score.text = "Score: " + _castle.GetComponent<Castle>().CheckDamage().ToString();
                     POI = null;
                     return;
                 }

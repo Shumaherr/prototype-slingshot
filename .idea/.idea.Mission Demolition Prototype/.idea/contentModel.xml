@@ -18,8 +18,10 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Castle.cs" t="Include" />
           <e p="CloudsGenerator.cs" t="Include" />
           <e p="FollowCam.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
           <e p="Slingshot.cs" t="Include" />
         </e>
       </e>
