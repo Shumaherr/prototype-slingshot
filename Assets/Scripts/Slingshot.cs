@@ -1,20 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slingshot : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public GameObject prefabProjectile;
     public float velocityMult = 8f;
+    public GameObject gameManager;
 
     [Header("Set Dynamically")]
     public GameObject launchPoint;
     public Vector3 launchPos;
-    public GameObject projectile; 
+    public GameObject projectile;
     public bool aimingMode;
     private Rigidbody projectileRigidbody;
     private LineRenderer _lineRenderer;
+    
     private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
@@ -74,6 +78,7 @@ public class Slingshot : MonoBehaviour
         projectile.transform.position = projPos;
         if (Input.GetMouseButtonUp(0))
         {
+            
             aimingMode = false;
             projectileRigidbody.isKinematic = false;
             projectileRigidbody.velocity = -mouseDelta * velocityMult;
@@ -81,6 +86,7 @@ public class Slingshot : MonoBehaviour
             projectile = null;
             _lineRenderer.positionCount = 0;
         }
+        
     }
 
 }

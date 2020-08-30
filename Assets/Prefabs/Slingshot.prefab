@@ -65,6 +65,8 @@ MonoBehaviour:
   prefabProjectile: {fileID: 8295671254907316405, guid: d9594f7ce04756742a20a14705ce077c,
     type: 3}
   velocityMult: 8
+  textPopup: {fileID: 4246262589511419632, guid: ec32c9d8406cac24492384437c12093a,
+    type: 3}
   launchPoint: {fileID: 2179999824801909212}
   launchPos: {x: 0, y: 0, z: 0}
   projectile: {fileID: 0}

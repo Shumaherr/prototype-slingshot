@@ -39,7 +39,6 @@ public class FollowCam : MonoBehaviour
             if (POI.tag == "Projectile") {
                 if (POI.GetComponent<Rigidbody>().IsSleeping())
                 {
-                    score.text = "Score: " + _castle.GetComponent<Castle>().CheckDamage().ToString();
                     POI = null;
                     return;
                 }

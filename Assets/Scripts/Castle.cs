@@ -4,23 +4,21 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Castle : MonoBehaviour
 {
-    public double bottom; //Bottom of this y is "fallen"
-    private double health = 100.0;
-    private int numOfBlocks;
-    private List<Transform> bricks;
+    private List<GameObject> bricks;
+
+    public GameObject targetGO;
     // Start is called before the first frame update
     void Start()
     {
         var o = this.gameObject;
-        if (o != null)
-        {
-            bricks = GetComponentsInChildren<Transform>().ToList();
-            numOfBlocks = bricks.Capacity;
-        }
-            
+        int target = Random.Range(0, o.transform.childCount);
+        o.GetComponentsInChildren<MeshRenderer>()[target]
+            .material.color = Color.red;
+        targetGO = o.transform.GetChild(target).gameObject;
     }
 
     // Update is called once per frame
@@ -29,18 +27,4 @@ public class Castle : MonoBehaviour
         
     }
 
-    public int CheckDamage()
-    {
-        int count = 0;
-        foreach (var brick in bricks)
-        {
-            if (brick.transform.position.y <= bottom)
-            {
-                count++;
-            }
-        }
-        health -= (count / numOfBlocks * 100);
-        numOfBlocks -= count;
-        return Mathf.RoundToInt((float) health);
-    }
 }
