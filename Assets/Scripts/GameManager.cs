@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     IEnumerator ReloadScene(float time)
     {
         yield return new WaitForSeconds(time);
+        ScoreManager.Instance.NextLevel();
         SceneManager.LoadScene("Game");
         // Code to execute after the delay
     }
