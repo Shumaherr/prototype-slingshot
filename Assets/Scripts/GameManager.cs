@@ -26,10 +26,11 @@ public class GameManager : MonoBehaviour
     private bool _inTarget;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        GameObject.Instantiate(slingshotPrefab, slingshotPos, Quaternion.Euler(0,-15,0));
-        GameObject.Instantiate(castlePrefab, castlePos, Quaternion.identity);
+        Instantiate(slingshotPrefab, slingshotPos, Quaternion.Euler(0,-15,0));
+        Instantiate(castlePrefab, castlePos, Quaternion.identity);
+        
         _textMeshPro = textPopup.GetComponent<TextMeshPro>();
     }
 
@@ -56,10 +57,5 @@ public class GameManager : MonoBehaviour
            StartCoroutine("ReloadScene", 1.5f);
         }
 
-    }
-
-    public void AddAttempt()
-    {
-        
     }
 }

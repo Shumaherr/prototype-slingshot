@@ -40,6 +40,7 @@ public class Slingshot : MonoBehaviour
 
     private void OnMouseDown()
     {
+        ScoreManager.Instance.AddAttempt();
         aimingMode = true;
         projectile = Instantiate(prefabProjectile) as GameObject;
         projectile.tag = "Projectile";
